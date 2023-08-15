@@ -1,0 +1,68 @@
+﻿@model CompanyModel
+
+<form method="post" asp-action="Upsert">
+    <input asp-for="Id" hidden />
+
+    <div class="border p-3 mt-4">
+        <div class="row pb-2">
+            <h2 class="text-primary">@(Model.Id == 0 ? "Create" : "Edit") Company</h2>
+            <hr />
+        </div>
+        @*<div asp-validation-summary="All"></div>*@
+        <div class="mb-1 ">
+            <label asp-for="Name" class="form-label mt-4"></label>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <div class="mb-1">
+            <label asp-for="StreetAddress" class="form-label mt-4"></label>
+            <input asp-for="StreetAddress" rows="3" class="form-control" />
+            <span asp-validation-for="StreetAddress" class="text-danger"></span>
+        </div>
+        <div class="mb-1 ">
+            <label asp-for="City" class="form-label mt-4"></label>
+            <input asp-for="City" class="form-control" />
+            <span asp-validation-for="City" class="text-danger"></span>
+        </div>
+        <div class="mb-1">
+            <label asp-for="State" class="form-label mt-4"></label>
+            <input asp-for="State" class="form-control" />
+            <span asp-validation-for="State" class="text-danger"></span>
+        </div>
+        <div class="mb-1">
+            <label asp-for="PostalCode" class="form-label mt-4"></label>
+            <input asp-for="PostalCode" class="form-control" />
+            <span asp-validation-for="PostalCode" class="text-danger"></span>
+        </div>
+        <div class="mb-1">
+            <label asp-for="PhoneNumber" class="form-label mt-4"></label>
+            <input asp-for="PhoneNumber" class="form-control" />
+            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+        </div>
+        <div class="col-12">
+            @if (Model.Id == 0)
+            {
+                <button type="submit" class="btn btn-primary" style="width:150px;">
+                    <i class="bi bi-plus-circle"></i> &nbspCreate
+                </button>
+            }
+            else
+            {
+                <button type="submit" class="btn btn-primary" style="width:150px;">
+                    <i class="bi bi-plus-circle"></i> &nbspUpdate
+                </button>
+            }
+            <a asp-controller="Company" asp-action="Index" class="btn btn-secondary" style="width:150px;">
+                <i class="bi bi-backspace"></i> &nbspBack
+            </a>
+        </div>
+    </div>
+</form>
+
+@*Client Side Validation*@
+@section Scripts
+    {
+    @{
+        <partial name="_ValidationScriptsPartial"></partial>
+    }
+}

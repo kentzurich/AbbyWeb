@@ -1,0 +1,71 @@
+﻿@page
+@model AbbyWeb.Pages.Categories.IndexModel
+
+@*@if (TempData["success"] is not null)
+{
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script type="text/javascript">
+        toastr.success('@TempData["success"]')
+    </script>
+}
+
+@if (TempData["error"] is not null)
+{
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script type="text/javascript">
+        toastr.error('@TempData["error"]')
+    </script>
+}*@
+
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2>Category List</h2>
+        </div>
+
+        <div class="col-6 text-end">
+            <a asp-page="/Categories/Create" class="btn btn-primary">
+                <i class="bi bi-plus-circle"></i> &nbspAdd New Category
+            </a>
+        </div>
+    </div>
+    </br></br>
+
+    <table class="table table-hover" style="width:100%">
+        <thead>
+            <tr>
+                <th scope="col">Category Name</th>
+                <th scope="col">Display Order</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var obj in Model.Categories)
+            {
+                <tr class="table-primary">
+                    <td scope="row" width="50%">
+                        @obj.Name
+                    </td>
+                    <td scope="row" width="30%">
+                        @obj.DisplayOrder
+                    </td>
+                    <td>
+                        <div class ="w-60 btn-group" role="group">
+                            <a asp-page="/Categories/Edit" asp-route-id="@obj.Id" class="btn btn-primary">
+                                <i class="bi bi-pencil-square"></i> &nbsp;Edit
+                            </a>
+                        </div>
+
+                        <div class="w-60 btn-group" role="group">
+                            <a asp-page="/Categories/Delete" asp-route-id="@obj.Id" class="btn btn-danger">
+                                <i class="bi bi-trash"></i> &nbsp;Delete
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

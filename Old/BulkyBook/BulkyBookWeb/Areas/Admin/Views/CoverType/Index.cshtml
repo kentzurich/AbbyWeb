@@ -1,0 +1,52 @@
+﻿@model IEnumerable<CoverTypeModel>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-primary">Cover Type List</h2>
+
+        </div>
+        <div class="col-6 text-end">
+            <a asp-controller="CoverType" asp-action="Create" class="btn btn-primary">
+                <i class="bi bi-plus-circle"></i> &nbspAdd Cover Type
+            </a>
+        </div>
+    </div>
+    </br></br>
+
+    <table class="table table-hover" style="width:100%">
+        <thead>
+            <tr>
+                <th scope="col">Cover Type</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var obj in Model)
+            {
+                <tr class="table-light">
+                    <td scope="row" width="50%">
+                        @obj.Name
+                    </td>
+                    <td scope="row" width="30%"></td>
+                    <td scope="row">
+                        <div class="btn-group" role="group">
+                            <a asp-controller="CoverType" asp-action="Edit" asp-route-id="@obj.Id" class="btn btn-primary">
+                                <i class="bi bi-pencil-square"></i> &nbspUpdate
+                            </a>
+                        </div>
+                        <div class="btn-group" role="group">
+                            <a asp-controller="CoverType" asp-action="Delete" asp-route-id="@obj.Id" class="btn btn-danger">
+                                <i class="bi bi-trash"></i> &nbspDelete
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

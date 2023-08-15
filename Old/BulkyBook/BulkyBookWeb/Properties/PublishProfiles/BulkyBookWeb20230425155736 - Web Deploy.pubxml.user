@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project>
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAASTDT4mqfAkyVMTxnU05A/gAAAAACAAAAAAAQZgAAAAEAACAAAADzXbJagfmlXArzJMo8GUO+nOoAY9GoCQc2X3AWBK1H3AAAAAAOgAAAAAIAACAAAAAD3W65en3eoclttQo3amD1EglFt8Ph/veKUWGUAF7XqIAAAACuFPjHv2d15ImsCktYZkOxAZ/d8K/eoYnnCwG7rhCr1tXxPTFE7W6b1+0fSuYYAcjgG6/Tkm9gZif92FpsHN1s+PUA6aGMzkIAv0PQZif8finD5yX8G4tD1X8/9nMlQ0usJDMKIKhdNiJnBtS6DqQg6DykeNGAS5U1DTIR+7NdTEAAAACrJ9r1j8o7JyilUmhQuxWziVGpeA7zYAazzi/JbqsbgM3osUajlviOHaGEIZaU97lX6Z4O+sQONsf74cqbTroR</EncryptedPassword>
+    <History>True|2023-04-25T09:11:19.2657552Z;True|2023-04-25T17:02:29.6095012+08:00;True|2023-04-25T16:19:27.4762710+08:00;True|2023-04-25T16:11:19.3648655+08:00;</History>
+    <LastFailureDetails />
+  </PropertyGroup>
+  <ItemGroup>
+    <DestinationConnectionStrings Include="DefaultConnection">
+      <Value>Server=tcp:bulkyserver.database.windows.net,1433%3bInitial Catalog=db_BulkyBook%3bPersist Security Info=False%3bUser ID=admin-sql%3bPassword=P%40ssw0rd_070195%3bMultipleActiveResultSets=False%3bEncrypt=True%3bTrustServerCertificate=False%3bConnection Timeout=30%3b</Value>
+    </DestinationConnectionStrings>
+  </ItemGroup>
+</Project>

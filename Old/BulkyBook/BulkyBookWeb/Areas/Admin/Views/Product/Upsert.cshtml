@@ -1,0 +1,153 @@
+﻿@model BulkyBook.Models.ViewModels.ProductViewModel
+
+<form method="post" asp-action="Upsert" enctype="multipart/form-data">
+    <input asp-for="productModel.Id" hidden />
+    <input asp-for="productModel.ImageUrl" hidden />
+
+    <div class="row">
+        <div class="col-10">
+            <div class="border p-3 mt-4 row">
+                <div class="col-12 pb-2">
+                    <h2 class="text-primary">@(Model.productModel.Id == 0 ? "Create" : "Edit") Product</h2>
+                    <hr />
+                </div>
+                @*<div asp-validation-summary="All"></div>*@
+                <div class="mb-1 col-6">
+                    <label asp-for="productModel.Title" class="form-label mt-4"></label>
+                    <input asp-for="productModel.Title" class="form-control" />
+                    <span asp-validation-for="productModel.Title" class="text-danger"></span>
+                </div>
+                <div class="mb-1 col-3 pt-2">
+                    <img src="@Model.productModel.ImageUrl" id="img" width="100%" style="border-radius:5px; border:1px solid #bbb9b9" />
+                </div>
+                <div class="mb-1">
+                    <label asp-for="productModel.Description" class="form-label mt-4"></label>
+                    <textarea asp-for="productModel.Description" rows="3" class="form-control"></textarea>
+                    <span asp-validation-for="productModel.Description" class="text-danger"></span>
+                </div>
+                <div class="mb-1 col-6">
+                    <label asp-for="productModel.ISBN" class="form-label mt-4"></label>
+                    <input asp-for="productModel.ISBN" class="form-control" />
+                    <span asp-validation-for="productModel.ISBN" class="text-danger"></span>
+                </div>
+                <div class="mb-1 col-6">
+                    <label asp-for="productModel.Author" class="form-label mt-4"></label>
+                    <input asp-for="productModel.Author" class="form-control" />
+                    <span asp-validation-for="productModel.Author" class="text-danger"></span>
+                </div>
+                <div class="mb-1 col-6">
+                    <label asp-for="productModel.ListPrice" class="form-label mt-4"></label>
+                    <input asp-for="productModel.ListPrice" class="form-control" />
+                    <span asp-validation-for="productModel.ListPrice" class="text-danger"></span>
+                </div>
+                <div class="mb-1 col-6">
+                    <label asp-for="productModel.Price" class="form-label mt-4"></label>
+                    <input asp-for="productModel.Price" class="form-control" />
+                    <span asp-validation-for="productModel.Price" class="text-danger"></span>
+                </div>
+                <div class="mb-1 col-6">
+                    <label asp-for="productModel.Price_50" class="form-label mt-4"></label>
+                    <input asp-for="productModel.Price_50" class="form-control" />
+                    <span asp-validation-for="productModel.Price_50" class="text-danger"></span>
+                </div>
+                <div class="mb-1 col-6">
+                    <label asp-for="productModel.Price_100" class="form-label mt-4"></label>
+                    <input asp-for="productModel.Price_100" class="form-control" />
+                    <span asp-validation-for="productModel.Price_100" class="text-danger"></span>
+                </div>
+                <div class="mb-1">
+                    <label asp-for="productModel.ImageUrl" class="form-label mt-4"></label>
+                    <input type="file" name="imgFile" onchange="return OnChange()" id="imgFile" class="form-control" />
+                </div>
+                <div class="mb-1 col-6">
+                    <label asp-for="productModel.CategoryId" class="form-label mt-4"></label>
+                    <select asp-for="productModel.CategoryId" asp-items="@Model.CategoryList" class="form-select">
+                        <option disabled selected>Select Category</option>
+                    </select>
+                    <span asp-validation-for="productModel.CategoryId" class="text-danger"></span>
+                </div>
+                <div class="mb-1 col-6">
+                    <label asp-for="productModel.CoverTypeId" class="form-label mt-4"></label>
+                    <select asp-for="productModel.CoverTypeId" asp-items="@Model.CoverTypeList" class="form-select">
+                        <option disabled selected>Select Cover Type</option>
+                    </select>
+                    <span asp-validation-for="productModel.CoverTypeId" class="text-danger"></span>
+                </div>
+                @*<div class="mb-1">
+                <label asp-for="productModel.CategoryId" class="form-label mt-4"></label>
+                <select asp-for="productModel.CategoryId" asp-items="ViewBag.CategoryList" class="form-select">
+                <option disabled selected>Select Category</option>
+                </select>
+                <span asp-validation-for="productModel.CategoryId" class="text-danger"></span>
+                </div>
+                <div class="mb-1">
+                <label asp-for="productModel.CoverTypeId" class="form-label mt-4"></label>
+                <select asp-for="productModel.CoverTypeId" asp-items="@(ViewData["CoverTypeList"] as IEnumerable<SelectListItem>)" class="form-select">
+                <option disabled selected>Select Cover Type</option>
+                </select>
+                <span asp-validation-for="productModel.CoverTypeId" class="text-danger"></span>
+                </div>*@
+                <div class="col-12">
+                    @if (Model.productModel.Id == 0)
+                    {
+                        <button type="submit" onclick="return ValidateInput()" class="btn btn-primary" style="width:150px;">
+                            <i class="bi bi-plus-circle"></i> &nbspCreate
+                        </button>
+                    }
+                    else
+                    {
+                        <button type="submit" class="btn btn-primary" style="width:150px;">
+                            <i class="bi bi-plus-circle"></i> &nbspUpdate
+                        </button>
+                    }
+                    <a asp-controller="Product" asp-action="Index" class="btn btn-secondary" style="width:150px;">
+                        <i class="bi bi-backspace"></i> &nbspBack
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</form>
+
+@*Client Side Validation*@
+@section Scripts
+    {
+    @{
+        <partial name="_ValidationScriptsPartial"></partial>
+    }
+    <script>
+        function OnChange(){
+            let img = document.getElementById("img");
+            let imgFile = document.getElementById("imgFile");
+
+            if (imgFile.files[0])
+                img.src = URL.createObjectURL(imgFile.files[0]);
+        }
+
+        tinymce.init({
+            selector: 'textarea',
+            plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage tinycomments tableofcontents footnotes mergetags autocorrect typography inlinecss',
+            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+            tinycomments_mode: 'embedded',
+            tinycomments_author: 'Author name',
+            mergetags_list: [
+                { value: 'First.Name', title: 'First Name' },
+                { value: 'Email', title: 'Email' },
+            ]
+        });
+
+        function ValidateInput()
+        {
+            if (document.getElementById("imgFile").value == "") {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Please upload an image!'
+                });
+                return false;
+            }
+            return true;
+        }
+    </script>
+}
